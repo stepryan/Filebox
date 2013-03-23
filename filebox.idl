@@ -1,0 +1,32 @@
+module filebox{
+
+	interface user{
+	readonly attribute long uid;
+	attribute string name;
+	attribute string password;
+	attribute long lastlogin;
+	typedef sequence<string>files;
+	attribute short filestatus;
+	
+	user addUser(in long uid, in string name, in string password);
+	user addFile(in string files);
+	user changeFileStatus(in string files, in  short filestatus);
+	user removeFile(in string files);
+	user checkFileUpdates(in string files, in long lastlogin, in string filename);
+	};
+	typedef sequence<user> users;
+
+	interface filelist{
+	typedef sequence<string> filelist;
+	attribute string filename;
+	attribute short fileid;
+	attribute short filestatus;
+	attribute long lastchanged;
+	
+	
+	filelist addFile(in string filelist, in string filename, in short fileid, in short filestatus);
+	filelist changeFileStatus(in string filelist, in short fileid, in short filestatus);
+	filelist fileUpdate(in string filelist, in long lastchanged, in  short fileid);
+	};
+		
+};
