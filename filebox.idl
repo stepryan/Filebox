@@ -5,8 +5,7 @@ module filebox{
 	attribute string name;
 	attribute string password;
 	attribute long lastlogin;
-	typedef sequence<string>files;
-	attribute short filestatus;
+	attribute short filestatus; // 0 = public 1 = private
 	
 	user addUser(in long uid, in string name, in string password);
 	user addFile(in string files);
@@ -16,17 +15,21 @@ module filebox{
 	};
 	typedef sequence<user> users;
 
-	interface filelist{
-	typedef sequence<string> filelist;
+	interface file{
+	attribute string content;
 	attribute string filename;
 	attribute short fileid;
 	attribute short filestatus;
 	attribute long lastchanged;
+	attribute long uid;
 	
 	
-	filelist addFile(in string filelist, in string filename, in short fileid, in short filestatus);
-	filelist changeFileStatus(in string filelist, in short fileid, in short filestatus);
-	filelist fileUpdate(in string filelist, in long lastchanged, in  short fileid);
+	
+	file addFile(in string filelist, in string filename, in short fileid, in short filestatus);
+	file changeFileStatus(in string filelist, in short fileid, in short filestatus);
+	file fileUpdate(in string filelist, in long lastchanged, in  short fileid);
+	file getFiles(in long uid);
+	file getFile(in long uid, in string filename);
 	};
-		
+	typedef sequence<file> files;	
 };
