@@ -2,12 +2,13 @@ module filebox{
 
 	interface user{
 	readonly attribute long uid;
-	attribute string name;
+	attribute string username;
 	attribute string password;
 	attribute long lastlogin;
 	attribute short filestatus; // 0 = public 1 = private
 	
-	user addUser(in long uid, in string name, in string password);
+	user addUser(in long uid, in string username, in string password);
+	user login(in string username, in string password);
 	user addFile(in string files);
 	user changeFileStatus(in string files, in  short filestatus);
 	user removeFile(in string files);
@@ -25,11 +26,11 @@ module filebox{
 	
 	
 	
-	file addFile(in string filelist, in string filename, in short fileid, in short filestatus);
+	file addFile(in string content, in string filename, in short fileid, in short filestatus);
 	file changeFileStatus(in string filelist, in short fileid, in short filestatus);
 	file fileUpdate(in string filelist, in long lastchanged, in  short fileid);
-	file getFiles(in long uid);
-	file getFile(in long uid, in string filename);
+	file getFiles(in long uid, in string content);
+	file getFile(in long uid, in string filename, in string content);
 	};
 	typedef sequence<file> files;	
 };
