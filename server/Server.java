@@ -15,7 +15,10 @@ public class Server {
 	public static void main(String[] args) {
 		
 		try {
-			
+			ORB orb = ORB.init(args, null);
+			POA root = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
+	        root.the_POAManager().activate();
+	        
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
