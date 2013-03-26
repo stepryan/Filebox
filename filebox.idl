@@ -15,7 +15,11 @@ module filebox{
 	user checkFileUpdates(in string files, in long lastlogin, in string filename);
 	};
 	typedef sequence<user> users;
-
+	
+	interface listener{
+		void message(in string message);
+	};
+	
 	interface file{
 	attribute string content;
 	attribute string filename;
@@ -26,6 +30,7 @@ module filebox{
 	
 	
 	
+	 void register(in listener lt);
 	file addFile(in string content, in string filename, in short fileid, in short filestatus);
 	file changeFileStatus(in string filelist, in short fileid, in short filestatus);
 	file fileUpdate(in string filelist, in long lastchanged, in  short fileid);
