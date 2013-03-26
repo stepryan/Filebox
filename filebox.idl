@@ -12,7 +12,6 @@ module filebox{
 	user addFile(in string files);
 	user changeFileStatus(in string files, in  short filestatus);
 	user removeFile(in string files);
-	user checkFileUpdates(in string files, in long lastlogin, in string filename);
 	};
 	typedef sequence<user> users;
 	
@@ -25,16 +24,16 @@ module filebox{
 	attribute string filename;
 	attribute short fileid;
 	attribute short filestatus;
-	attribute long lastchanged;
 	attribute long uid;
+
 	
 	
 	
 	 void register(in listener lt);
 	file addFile(in string content, in string filename, in short fileid, in short filestatus);
 	file changeFileStatus(in string filelist, in short fileid, in short filestatus);
-	file fileUpdate(in string filelist, in long lastchanged, in  short fileid);
-	file getFiles(in long uid, in string content);
+	file fileUpdate(in string filelist, in long lastchanged, in  short fileid, in listener callback );
+	file getFiles(in long uid, in string content, in string filename);
 	file getFile(in long uid, in string filename, in string content);
 	};
 	typedef sequence<file> files;	
