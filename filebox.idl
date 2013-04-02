@@ -1,40 +1,45 @@
-module filebox{
-
-	interface user{
-	readonly attribute long uid;
-	attribute string username;
-	attribute string password;
-	attribute long lastlogin;
-	attribute short filestatus; // 0 = public 1 = private
-	
-	user addUser(in long uid, in string username, in string password);
-	user login(in string username, in string password);
-	user addFile(in string files);
-	user changeFileStatus(in string files, in  short filestatus);
-	user removeFile(in string files);
+module filebox {
+	interface user {
+		readonly attribute long id;
+		attribute string username;
+		attribute string password;
+		attribute long lastlogin;	
 	};
 	typedef sequence<user> users;
 	
-	interface listener{
+	interface listener {
 		void message(in string message);
 	};
 	
-	interface file{
-	attribute string content;
-	attribute string filename;
-	attribute short fileid;
-	attribute short filestatus;
-	attribute long uid;
-
-	
-	
-	
-	 void register(in listener lt);
-	file addFile(in string content, in string filename, in short fileid, in short filestatus);
-	file changeFileStatus(in string filelist, in short fileid, in short filestatus);
-	file fileUpdate(in string filelist, in long lastchanged, in  short fileid, in listener callback );
-	file getFiles(in long uid, in string content, in string filename);
-	file getFile(in long uid, in string filename, in string content);
+	interface file {
+		readonly attribute long id;
+		attribute string name;
+		attribute string content;	
+		attribute long status; // 0 - private, 1 - public
+		attribute long userid;
 	};
 	typedef sequence<file> files;	
+
+	interface status {
+		attribute long code; // 0 - success, 1 - error
+		attribute string text;
+	};
+	
+	interface service {
+		long addUser(in string username, in string password);
+		user getUser(in long id);
+		long login(in string username, in string password);
+
+		long addFile(in string name, in string content, in long status, in long userid);
+		file getFile(in string filename, in long uid);
+		
+		file changeFileStatus(in string filelist, in short fileid, in short filestatus);
+		file fileUpdate(in string filelist, in long lastchanged, in  short fileid, in listener callback);
+		files getFiles(in long uid, in string content, in string filename);
+		void removeFile(in short fileid);
+		
+		void register(in listener lt);
+		
+		status getStatus();
+	};
 };
