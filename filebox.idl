@@ -10,6 +10,9 @@ module filebox {
 	interface listener {
 		void message(in string message);
 	};
+	interface MessageServer {
+	void register(in listener lt);
+	};
 	
 	interface file {
 		readonly attribute long id;
@@ -17,6 +20,7 @@ module filebox {
 		attribute string content;	
 		attribute long status; // 0 - private, 1 - public
 		attribute long userid;
+		attribute any contentbinary;
 	};
 	typedef sequence<file> files;	
 
@@ -41,5 +45,7 @@ module filebox {
 		void register(in listener lt);
 		
 		status getStatus();
+		
+		file addFileBinary(in any contentbinary, in string filename, in short fileid, in short filestatus);
 	};
 };
