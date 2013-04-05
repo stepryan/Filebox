@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.TreeMap;
 import java.util.NavigableMap;
 
+import org.omg.CORBA.Any;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAPackage.ServantNotActive;
 import org.omg.PortableServer.POAPackage.WrongPolicy;
@@ -278,4 +279,16 @@ public class ServiceServant implements serviceOperations {
     
     return loggedIn;
   }
+
+public file[] getFiles(int userid) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public file addFileBinary(Any contentbinary, String filename, short fileid,
+		short filestatus) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
