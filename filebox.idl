@@ -10,8 +10,9 @@ module filebox {
 	interface listener {
 		void message(in string message);
 	};
+	
 	interface MessageServer {
-	void register(in listener lt);
+		void register(in listener lt);
 	};
 	
 	interface file {
@@ -36,10 +37,10 @@ module filebox {
 
 		long addFile(in string name, in string content, in long status, in long userid);
 		file getFile(in string filename, in long uid);
+		files getFiles(in long userid);
 		
 		file changeFileStatus(in string filelist, in short fileid, in short filestatus);
 		file fileUpdate(in string filelist, in long lastchanged, in  short fileid, in listener callback);
-		files getFiles(in long uid, in string content, in string filename);
 		void removeFile(in short fileid);
 		
 		void register(in listener lt);

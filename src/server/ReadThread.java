@@ -4,23 +4,23 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class ReadThread extends Thread {
-MessageServerImpl clientmessage = null;
-public ReadThread(MessageServerImpl message) {
-	this.clientmessage = message;
-    }
+  MessageServerImpl clientmessage = null;
 
-    public void run() {
-	BufferedReader br = new BufferedReader(
-	    new InputStreamReader(System.in));
+  public ReadThread(MessageServerImpl message) {
+    this.clientmessage = message;
+  }
 
-        try {
-	    for (;;) {
-                System.out.print("message > file updated ");
-		String usermessage = br.readLine();
-		clientmessage.message(usermessage);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+  public void run() {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    try {
+      for (;;) {
+        System.out.print("message > file updated ");
+        String usermessage = br.readLine();
+        clientmessage.message(usermessage);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 }

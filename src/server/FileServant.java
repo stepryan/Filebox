@@ -66,15 +66,12 @@ public class FileServant  implements fileOperations {
     userid = newUserid;
   }
 
-@Override
-public Any contentbinary() {
-	
-	return contentBinary;
-}
+  public Any contentbinary() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
-@Override
-public void contentbinary(Any newContentbinary) {
-	contentBinary = newContentbinary;
-	
-}
+  public void contentbinary(Any newContentbinary) {
+    // TODO Auto-generated method stub    
+  }
 }
