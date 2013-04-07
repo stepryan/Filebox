@@ -8,14 +8,18 @@ import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 import org.omg.CORBA.Any;
+import org.omg.CORBA.ORB;
 import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAPackage.ServantAlreadyActive;
 import org.omg.PortableServer.POAPackage.ServantNotActive;
 import org.omg.PortableServer.POAPackage.WrongPolicy;
 
+import filebox.MessageServer;
 import filebox.file;
 import filebox.fileHelper;
 import filebox.filePOATie;
 import filebox.listener;
+import filebox.listenerHelper;
 import filebox.serviceOperations;
 import filebox.status;
 import filebox.statusHelper;
@@ -36,7 +40,7 @@ public class ServiceServant implements serviceOperations {
 
   private POA rootPOA;
   private Any contentBinary;
-
+  private  ORB orb;
   public ServiceServant() {
     super();
     users = new TreeMap<Integer, UserServant>(); // sorted by key
@@ -48,6 +52,7 @@ public class ServiceServant implements serviceOperations {
   public ServiceServant(POA rootPOA) {
     this();
     this.rootPOA = rootPOA;
+    
   }
 
   /*
@@ -313,7 +318,7 @@ public class ServiceServant implements serviceOperations {
   }
 
   public void register(listener lt) {
-    // TODO Auto-generated method stub
+    
   }
 
   public void removeFile(short fileid) {
@@ -338,4 +343,9 @@ public class ServiceServant implements serviceOperations {
     // TODO Auto-generated method stub
     return null;
   }
+
+public void setORB(ORB orb_val) {
+	orb = orb_val;
+	
+}
 }

@@ -67,11 +67,10 @@ public class FileServant  implements fileOperations {
   }
 
   public Any contentbinary() {
-    // TODO Auto-generated method stub
-    return null;
+  return contentBinary;
   }
 
-  public void contentbinary(Any newContentbinary) {
-    // TODO Auto-generated method stub    
+  public void contentbinary(Any newContentBinary) {
+    contentBinary = newContentBinary;    
   }
 }

@@ -15,7 +15,7 @@ public class ReadThread extends Thread {
 
     try {
       for (;;) {
-        System.out.print("message > file updated ");
+        System.out.print("message >  ");
         String usermessage = br.readLine();
         clientmessage.message(usermessage);
       }
