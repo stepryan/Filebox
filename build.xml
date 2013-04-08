@@ -47,4 +47,10 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    <target name="New_configuration (1)">
+        <java classname="server.Server" failonerror="true" fork="yes">
+            <arg line="-ORBInitialPort 1050"/>
+            <classpath refid="Filebox.classpath"/>
+        </java>
+    </target>
 </project>
